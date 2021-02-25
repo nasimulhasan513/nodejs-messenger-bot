@@ -4,7 +4,7 @@ const request = require("request");
 let postWebhook = (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
-
+  console.log(body);
   // Check the webhook event is from a Page subscription
   if (body.object === "page") {
     // Iterate over each entry - there may be multiple if batched
@@ -110,7 +110,7 @@ function handlePostback(sender_psid, received_postback) {
 
   // Get the payload for the postback
   let payload = received_postback.payload;
-
+  console.log(payload);
   // Set the response based on the postback payload
   if (payload === "yes") {
     response = { text: "Thanks!" };
