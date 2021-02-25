@@ -52,15 +52,18 @@ let postWebhook = (req, res) => {
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
-  let response;
+  let response = {};
 
   // Checks if the message contains text
   if (received_message.text) {
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      text: `You sent the message: "${received_message.text}". Now send me an attachment!`,
-    };
+    let text = received_message.text;
+    if (text.toLowerCase() === "hi") {
+      response.text = "Hello!";
+    } else if (text.toLowerCase() === "sayem") {
+      response.text = "Abu Sayem";
+    } else {
+      response.text = "I know Sayem->Abu Sayem  and hi->hello";
+    }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
