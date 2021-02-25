@@ -6,7 +6,8 @@ const configViewEngine = require("./src/config/viewEngine");
 let app = express();
 
 app.use(cors());
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 initWebRoutes(app);
 configViewEngine(app);
 
